@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args) => {
                     settedParent.send({
                         embed: {
                             title: `Hallo ${message.author.username}`,
-                            description: "Hallo, de team van Gelderland zal je zo snel mogelijk helpen. Tag @Support Team als je langer dan 15 minuten wacht.",
+                            description: "Hallo, de team van Gelderland zal je zo snel mogelijk helpen. Tag @support team als je langer dan 15 minuten wacht.",
                             color: "YELLOW"
                         }
                     });
