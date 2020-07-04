@@ -3,7 +3,7 @@ const discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
-        .setTitle("rollen")
+        .setTitle("De rollen zijn:")
         .setDescription("Owner \n Co-owner \n head discord developer daniël \n Management")
         .setColor("#6dad3e")
         .setThumbnail("https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
