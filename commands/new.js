@@ -46,8 +46,8 @@ module.exports.run = async (client, message, args) => {
                     settedParent.send({
                         embed: {
                             title: `Hallo ${message.author.username}`,
-                            description: "We helpen je zo snel mogelijk!",
-                            color: "BLUE"
+                            description: "Hallo, de team van Gelderland zal je zo snel mogelijk helpen. Tag @Support Team als je langer dan 15 minuten wacht.",
+                            color: "YELLOW"
                         }
                     });
                     message.channel.send({

@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
         .setTitle("Credits naar...")
-        .setDescription("@playfruitje#9860 - Heeft de grootste gedeelte van de game gemaakt en is de owner. \n\n @Danië;#2939 - Heeft deze bot voor Gelderland in zijn eentje gemaakt. \n\n @head developer - Die veel hebben gewerkt aan de roblox game. \n\n @developer - Die hebben mee geholpen met de game \n\n @proef developer - Die wat kleine mooie gebouwen hebben gemaakt.")
+        .setDescription("@playfruitje#9860 - Heeft de grootste gedeelte van de game gemaakt en is de owner. \n\n @Daniël#2939 - Heeft deze bot voor Gelderland in zijn eentje gemaakt. \n\n @head developer - Die veel hebben gewerkt aan de roblox game. \n\n @developer - Die hebben mee geholpen met de game \n\n @proef developer - Die wat kleine mooie gebouwen hebben gemaakt.")
         .setColor("#6dad3e")
         .setThumbnail("https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
         .setImage("https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
