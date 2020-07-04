@@ -1,0 +1,22 @@
+{
+  "name": "gelderlandbot",
+  "version": "1.0.0",
+  "description": "Bot voor server Gelderland",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Bot",
+    "Gelderland",
+    "server",
+    "gepersonaliseerd"
+  ],
+  "author": "Daniël",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "fs": "0.0.1-security",
+    "ms": "^2.1.2"
+  }
+}
