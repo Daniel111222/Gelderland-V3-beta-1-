@@ -2,7 +2,7 @@ const discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
 
-    const categoryID = "723177277189259344";
+    const categoryID = "715442314952048660";
 
     if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.reply("Jij kan deze ticket niet sluiten!");
 

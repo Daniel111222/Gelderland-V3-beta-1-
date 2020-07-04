@@ -59,11 +59,11 @@ bot.on("message", async message => {
 
 bot.on("guildMemberAdd", member => {
 
-    var role = member.guild.roles.cache.get('721118805107146762');
+    var role = member.guild.roles.cache.get('715241700200808448');
     if (!role) return;
     member.roles.add(role);
 
-    var channel = member.guild.channels.cache.get('718763245246349315');
+    var channel = member.guild.channels.cache.get('716314714623180832');
     if (!channel) return;
 
     channel.send({
@@ -85,7 +85,7 @@ bot.on("guildMemberAdd", member => {
 
 bot.on("guildMemberRemove", member => {
 
-    var channel = member.guild.channels.cache.get('718763245246349315');
+    var channel = member.guild.channels.cache.get('716314714623180832');
     if (!channel) return;
 
     channel.send({
