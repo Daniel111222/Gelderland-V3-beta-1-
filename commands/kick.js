@@ -1,59 +1,78 @@
 const discord = require("discord.js");
-const fs = require("fs");
-const botConfig = require("../botconfig.json")
-module.exports.run = async (bot, message, args) => {
-    const warns = JSON.parse(fs.readFileSync("./moderation.json", "utf8"));
+const botConfig = require("../botConfig.json");
 
-    if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("Sorry, jij kan dit niet doen!");
+var prefix = botConfig.prefix
 
-    var kickUser = message.guild.member(message.mentions.users.first());
-    if (!kickUser) return message.channel.send("Ik kan geen gebruiker vinden!");
+module.exports.run = async (client, message, args) => {
 
-    if (!warns[kickUser.id]) warns[kickUser.id] = {
-        warns: 0,
-        mutes: 0,
-        kicks: 0,
-        bans: 0
-    };
-    var reason = args.join(" ").slice(22);
-    if (!reason) return message.channel.send("Ik kan geen reden vinden!")
+    // !kick @spelerNaam redenen hier
 
-    if (kickUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Je mag deze speler niet kicken!");
+    var args = message.content.slice(prefix.length).split(/ +/);
 
-    warns[kickUser.id].kicks++
-    fs.writeFile("./moderation.json", JSON.stringify(warns), (err) => {
-        if (err) console.log(err);
-    });
+    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("sorry jij kan dit niet gebruiken");
 
-    var banEmbed2 = new discord.MessageEmbed()
-        .setTitle(`Je bent gekicked uit ${message.guild.name}!`)
-        .setColor("#ee0000")
-        .addField("Door:", message.author.tag)
-        .addField("Reden:", reason);
+    if (!message.guild.me.hasPermission("KICK_MEMBERS")) return message.reply("geen perms");
 
-    kickUser.send(banEmbed2).then(function () {
-        message.guild.member(kickUser).kick(reason);
-        return message.channel.send("Deze gebruiker is succesvol gekicked en heeft hier bericht van gekregen!");
-    }).catch(function () {
-        message.guild.member(kickUser).kick(reason);
-        return message.channel.send("Deze gebruiker is succesvol gekicked, maar heeft hier GEEN bericht van gekregen!");
-    });
+    if (!args[1]) return message.reply("geen gebruiker opgegeven");
 
-    let logChannel = message.guild.channels.cache.get(botConfig.logChannel);
-    if (logChannel) {
-        var banEmbed = new discord.MessageEmbed()
-            .setTitle(`LOG: kick`)
-            .setColor("#ee0000")
-            .addField("Speler:", kickUser.user.tag)
-            .addField("Door:", message.author.tag)
-            .addField("Aantal Kicks: ", warns[kickUser.id].kicks)
-            .addField("Reden:", reason);
+    if (!args[2]) return message.reply("geen redenen opgegeven");
 
-            logChannel.send(banEmbed)
-    }
+    var kickUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
-}
+    var reason = args.slice(2).join(" ");
 
-module.exports.help = {
-    name: "kick"
+    if (!kickUser) return message.reply("gebruiker niet gevonden");
+
+    var embedPrompt = new discord.MessageEmbed()
+        .setColor("RED")
+        .setTitle("Gelieve binnen 30 sec te reageren")
+        .setDescription(`Wil je ${kickUser} kicken?`);
+
+    var embed = new discord.MessageEmbed()
+        .setColor("#ff0000")
+        .setFooter(message.member.displayName)
+        .setTimestamp()
+        .setDescription(`**Gekickt: ** ${kickUser} (${kickUser.id})
+        **Gekickt door:** ${message.author}
+        **Redenen: ** ${reason}`);
+
+    message.channel.send(embedPrompt).then(async msg => {
+
+        // var emoji = await promptMessage(msg, message.author, 30, ["✅", "❌"]);
+
+        // if (emoji === "✅") {
+
+        //     msg.delete();
+
+        //     kickUser.kick(reason).catch(err => {
+        //         if (err) return message.reply("Er is iets foutgelopen");
+        //     });
+
+        //     message.channel.send(embed);
+
+        // }else if(emoji === "❌"){
+
+        //     msg.delete();
+
+        //     message.reply("Kick geannuleerd").then(m => m.delete(5000));
+
+        // }
+
+        message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 30000 }).then(collected => {
+
+            if (collected.first().content.toLowerCase() == 'ja') {
+
+                kickUser.kick(reason).catch(err => {
+                    if (err) return message.reply("Er is iets foutgelopen");
+                });
+
+            } else {
+                message.reply("Geannuleerd");
+
+            }
+
+        });
+
+    })
+
 }
