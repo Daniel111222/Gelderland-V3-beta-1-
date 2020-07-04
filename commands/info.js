@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
 
     var botEmbed = new discord.MessageEmbed()
     .setTitle("Info")
-    .setColor("#32a852")
+    .setColor("#6dad3e")
     .addFields(
         { name: "Dit is de bot van Gelderland V3 (beta)", value: "De bot is gemaakt door @Daniël#2939 en de owner van de server is @playfruitje#9860"},
         { name: "Dit is De officiële support server van de bot: Daniël bot", value: "[Klik Hier!](https://discord.gg/2E5fhn3)" },
