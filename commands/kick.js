@@ -65,7 +65,7 @@ module.exports.run = async (client, message, args) => {
 
                 kickUser.kick(reason).catch(err => {
                     if (err) {
-                        throw err && message.reply("er is iets fout gegaan");
+                        console.log(err) && message.reply("er is iets fout gegaan");
                     }
                 });
 
