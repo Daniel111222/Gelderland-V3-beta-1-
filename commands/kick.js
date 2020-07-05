@@ -64,7 +64,9 @@ module.exports.run = async (client, message, args) => {
             if (collected.first().content.toLowerCase() == 'ja') {
 
                 kickUser.kick(reason).catch(err => {
-                    if (err) return message.reply("Er is iets foutgelopen");
+                    if (err) {
+                        throw err && message.reply("er is iets fout gegaan");
+                    }
                 });
 
             } else {
