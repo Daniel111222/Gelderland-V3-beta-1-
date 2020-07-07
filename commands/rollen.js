@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
         .setThumbnail("https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
         .setImage("https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
         .setFooter("Bot maker: @Daniël#2939 - Owner Gelderland: @playfruitje#9860", "https://media.discordapp.net/attachments/719562600282849324/728612375590338630/Schermopname_58.png?width=845&height=475")
-        .setTimestamp();
+        .setTimesich wille errortamp();
         
     return message.channel.send(botEmbed);
 }
