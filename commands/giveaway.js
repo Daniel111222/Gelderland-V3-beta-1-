@@ -10,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
 
         var noPermissionEmbed = new discord.MessageEmbed()
             .setTitle("❌ Je hebt hier geen permissies voor!")
-            .setColor("#e684f5")
             .setTimestamp()
             .setFooter(`Antwoord op: ${message.author.tag}`);
 
@@ -33,6 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
     var giveawayEmbed = new discord.MessageEmbed()
         .setTitle("🎉 Giveaway 🎉")
+        .setColor("#e684f5")
         .setFooter(`Vervalt: ${dateEnd}`)
         .setDescription(item);
 
