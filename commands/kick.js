@@ -1,6 +1,6 @@
 const discord = require("discord.js");
 
-const botConfig = require("../botConfig.json");
+const botConfig = require("../botconfig.json");
 
 var prefix = botConfig.prefix
 
@@ -64,10 +64,14 @@ module.exports.run = async (client, message, args) => {
             if (collected.first().content.toLowerCase() == 'ja') {
 
                 kickUser.kick(reason).catch(err => {
-                    if (err) {
-                        console.log(err) && message.reply("er is iets fout gegaan");
-                    }
+                    if (err) return message.reply("Er is iets foutgelopen");
                 });
+
+                var botEmbed = new discord.MessageEmbed()
+                    .setDescription(`**${kickUser} (${kickUser.id})** is succesvol gekickd door **${message.author}.**`)
+                    .setColor("#32a852")
+
+                return message.channel.send(botEmbed);
 
             } else {
                 message.reply("Geannuleerd");
