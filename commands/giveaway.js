@@ -10,6 +10,7 @@ module.exports.run = async (bot, message, args) => {
 
         var noPermissionEmbed = new discord.MessageEmbed()
             .setTitle("❌ Je hebt hier geen permissies voor!")
+            .setColor("#ff2200")
             .setTimestamp()
             .setFooter(`Antwoord op: ${message.author.tag}`);
 
